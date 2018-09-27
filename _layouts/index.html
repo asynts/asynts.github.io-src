@@ -1,15 +1,9 @@
 ---
 ---
+{% include head.html %}
 
-<style>
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
-</style>
+<title>Index of {{page.dir}}</title>
 
-<ul>
-  {% for item in page.items %}
-  <li>{{item}}</li>
-  {% endfor %}
-</ul>
+{% for item in page.items %}
+<a href="{{item}}">{{item}}</a><br>
+{% endfor %}
