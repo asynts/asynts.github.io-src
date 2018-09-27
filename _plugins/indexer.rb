@@ -15,28 +15,22 @@ module Asynts
 
   class Generator < Jekyll::Generator
     def generate(site)
-      dirs = {}
+      files = []
 
-      for p in site.pages
-        if dirs.has_key?(p.dir)
-          dirs[p.dir] << p.name
-        else
-          dirs[p.dir] = [p.name]
-        end
-      end
+      # TODO site.pages
 
       for p in site.static_files
-        dir = File.dirname("." + p.relative_path)
-        if dirs.has_key?(dir)
-          dirs[dir] << p.name
-        else
-          dirs[dir] = [p.name]
-        end
+        files << File.join(p.relative_path)
       end
 
-      dirs.each do |dir, items|
-        site.pages << Page.new(site, site.source, dir, items)
+      for file in files
+        dirs = file.split(File::SEPARATOR)
+        dirs = ["."] + dirs[1..-2]
+
+        # TODO what now
       end
+
+#      site.pages << Page.new(site, site.source, dir, items)
     end
   end
 end
