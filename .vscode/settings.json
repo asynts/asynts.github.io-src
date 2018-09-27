@@ -2,11 +2,14 @@
     "files.exclude": {
         "**/.git/": true,
         "_site/": true,
+        ".jekyll-metadata": true,
+        "Gemfile.lock": true,
         "vendor/": true,
-        "Gemfile.lock": true
     },
 
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+
+    "html.autoClosingTags": false
 }
