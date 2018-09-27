@@ -1,0 +1,12 @@
+{
+    "files.exclude": {
+        "**/.git/": true,
+        "_site/": true,
+        "vendor/": true,
+        "Gemfile.lock": true
+    },
+
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+}
