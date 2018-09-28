@@ -1,9 +1,9 @@
 ---
 ---
-{% include head.html %}
 
+{%- include head.html -%}
 <title>Index of {{page.dir}}</title>
 
-{% for item in page.items %}
+{% for item in page.items -%}
 <a href="{{item}}">{{item}}</a><br>
 {% endfor %}

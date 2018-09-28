@@ -1,3 +1,5 @@
+require "set"
+
 module Indexer
   class Page < Jekyll::Page
     def initialize(site, base, dir, items)
@@ -15,9 +17,18 @@ module Indexer
 
   def self.run(site, dir)
     files = Dir.entries(dir)
-    if !Set[files].intersect?(Set["index.html", "index.htm"])
-      # TODO files aren't created!
-      site.pages << Page.new(site, site.source, dir, files)
+    files.sort!
+  
+    if !files.to_set.intersect?(Set["index.html", "index.htm"])
+      page = Page.new(site, site.source, dir, files)
+
+      payload = site.site_payload
+      page.output = Jekyll::Renderer.new(site, page, payload).run
+      page.write(site.dest)
+
+      puts "rendering #{dir}/index.html"
+
+      site.pages << page
     end
 
     for file in files
