@@ -1,4 +1,8 @@
 require "set"
+require "pathname"
+
+# TODO refactoring
+# TODO use pathname (if possible; and smart)
 
 module Indexer
   class Page < Jekyll::Page
@@ -12,10 +16,13 @@ module Indexer
       self.read_yaml(File.join(base, "_layouts"), "index.html")
 
       self.data["items"] = items
+      self.data["title"] = Pathname.new(dir).relative_path_from(Pathname.new(site.dest)).to_s
+
+      Jekyll::Hooks.trigger :pages, :post_init, self
     end
   end
 
-  def self.run(site, dir)
+  def self._run(site, dir)
     files = Dir.entries(dir)
     files.sort!
   
@@ -23,10 +30,13 @@ module Indexer
       page = Page.new(site, site.source, dir, files)
 
       payload = site.site_payload
-      page.output = Jekyll::Renderer.new(site, page, payload).run
-      page.write(site.dest)
 
-      puts "rendering #{dir}/index.html"
+      Jekyll::Hooks.trigger :site, :pre_render, site, payload
+      page.output = Jekyll::Renderer.new(site, page, payload).run
+      Jekyll::Hooks.trigger :site, :post_render, site, payload
+
+      page.write(site.dest)
+      Jekyll::Hooks.trigger :site, :post_write, site
 
       site.pages << page
     end
@@ -37,12 +47,20 @@ module Indexer
       end
 
       if Dir.exist?(File.join(dir, file))
-        run(site, File.join(dir, file))
+        _run(site, File.join(dir, file))
       end
     end
+  end
+
+  @has_indexed = false
+  def self.run(site)
+    return unless !@has_indexed
+    has_indexed = true
+
+    self._run(site, site.dest)
   end
 end
 
 Jekyll::Hooks.register :site, :post_write do |site|
-  Indexer.run(site, site.dest)
+  Indexer.run(site)
 end
