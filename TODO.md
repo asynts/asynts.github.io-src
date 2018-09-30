@@ -5,7 +5,6 @@
 - [ ] refactor the guide layout
 - [ ] make sure, the anchors work (and get displayed)
 - [ ] why is the `?v=` in the guide theme required?
-- [ ] add shorter urls for code hosted on this site
 
 # Tests
 

@@ -5,8 +5,12 @@ const error = document.getElementById("error");
 const params = new URLSearchParams(window.location.search);
 
 if(window.location.hash.length > 0) {
-  const url = window.location.hash.substr(1);
+  let url = window.location.hash.substr(1);
   const lang = params.get("lang");
+
+  if(url.startsWith("#")) {
+    url = `../so/${url.substr(1)}`;
+  }
 
   if(lang !== null) {
     output.classList.add(`lang-${lang}`);
