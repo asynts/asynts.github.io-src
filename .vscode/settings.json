@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/.git/": true,
+        "_site/": true,
+        ".jekyll-metadata": true,
+        "Gemfile.lock": true,
+        "vendor/": true,
+        ".sass-cache/": true,
+    },
+
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+
+    "html.autoClosingTags": false,
+
+    "editor.minimap.enabled": false
+}

@@ -1,0 +1,24 @@
+---
+---
+
+{% include head.html %}
+
+<noscript>Please enable JavaScript</noscript>
+
+<script>
+  let params = new URLSearchParams(window.location.search);
+  let url = params.get("url");
+  let lang = params.get("lang");
+
+  if(url !== null) {
+    url = url.replace("https://raw.githubusercontent.com/asynts/stack-overflow/master/", "#");
+
+    if(lang !== null) {
+      window.location.replace(`../pr/?lang=${lang}#${url}`);
+    } else {
+      window.location.replace(`../pr/#${url}`);
+    }
+  } else {
+    window.location.replace("../pr/");
+  }
+</script>
