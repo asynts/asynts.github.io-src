@@ -35,3 +35,28 @@ if(window.location.hash.length > 0) {
 } else {
   welcome.hidden = false;
 }
+
+const urlin = document.getElementById("url-in");
+const urlout = document.getElementById("url-out");
+
+function update() {
+  let url = urlin.value;
+
+  if(url.startsWith("https://raw.githubusercontent.com/asynts/stack-overflow/master/")) {
+    url = url.replace("https://raw.githubusercontent.com/asynts/stack-overflow/master/", "#");
+  } else if(url.startsWith("https://asynts.github.io/so/")) {
+    url = url.replace("https://asynts.github.io/so/", "#");
+  }
+
+  if(url.length == 0) {
+    url = "https://asynts.github.io/pr/";
+  } else {
+    url = "https://asynts.github.io/pr/#" + url;
+  }
+
+  urlout.innerText = url;
+  urlout.href = url;
+}
+
+urlin.onkeyup = update;
+update();
