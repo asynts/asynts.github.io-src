@@ -1,8 +1,3 @@
-require "set"
-require "pathname"
-
-# TODO refactoring
-# TODO use pathname (if possible; and smart)
 module Indexer
   class Page < Jekyll::Page
     def initialize(site, base, dir, items)

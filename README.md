@@ -1,7 +1,3 @@
-# TODO
-
-- [ ] refactor indexer plugin
-
 # Tests
 
 - https://asynts.github.io/stack-overflow/react/mcve.html
