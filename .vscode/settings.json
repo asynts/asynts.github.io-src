@@ -5,6 +5,7 @@
         ".jekyll-metadata": true,
         "Gemfile.lock": true,
         "vendor/": true,
+        ".sass-cache/": true,
     },
 
     "editor.insertSpaces": true,
