@@ -1,0 +1,24 @@
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+
+<noscript>Please enable JavaScript</noscript>
+
+<script>
+  let params = new URLSearchParams(window.location.search);
+  let url = params.get("url");
+  let lang = params.get("lang");
+
+  if(url !== null) {
+    url = url.replace("https://raw.githubusercontent.com/asynts/stack-overflow/master/", "#");
+
+    if(lang !== null) {
+      window.location.replace(`../pr/?lang=${lang}#${url}`);
+    } else {
+      window.location.replace(`../pr/#${url}`);
+    }
+  } else {
+    window.location.replace("../pr/");
+  }
+</script>
