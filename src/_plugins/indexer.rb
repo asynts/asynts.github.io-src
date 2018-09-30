@@ -3,20 +3,18 @@ require "pathname"
 
 # TODO refactoring
 # TODO use pathname (if possible; and smart)
-
 module Indexer
   class Page < Jekyll::Page
     def initialize(site, base, dir, items)
       @site = site
       @base = base
-      @dir = dir
+      @dir = Pathname.new(dir).relative_path_from(Pathname.new(site.dest)).to_s
       @name = "index.html"
 
       self.process(@name)
       self.read_yaml(File.join(base, "_layouts"), "index.html")
 
       self.data["items"] = items
-      self.data["title"] = Pathname.new(dir).relative_path_from(Pathname.new(site.dest)).to_s
 
       Jekyll::Hooks.trigger :pages, :post_init, self
     end

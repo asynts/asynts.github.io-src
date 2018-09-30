@@ -11,5 +11,7 @@
     "editor.tabSize": 2,
     "editor.detectIndentation": false,
 
-    "html.autoClosingTags": false
+    "html.autoClosingTags": false,
+
+    "editor.minimap.enabled": false
 }

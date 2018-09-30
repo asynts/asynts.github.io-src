@@ -1,0 +1,20 @@
+g++ (Ubuntu 7.3.0-16ubuntu3) 7.3.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+/tmp/tmp.WVQm08mMuN/test.hpp:7:3: warning: type ‘struct A’ violates the C++ One Definition Rule [-Wodr]
+ } A;
+   ^
+/tmp/tmp.WVQm08mMuN/test.hpp:7:3: note: a different type is defined in another translation unit
+ } A;
+   ^
+/tmp/tmp.WVQm08mMuN/test.hpp:5:18: note: the first difference of corresponding definitions is field ‘b’
+   std::vector<B> b;
+                  ^
+/tmp/tmp.WVQm08mMuN/test.hpp:5:18: note: a field of same name but different type is defined in another translation unit
+   std::vector<B> b;
+                  ^
+/usr/include/c++/7/bits/stl_vector.h:216:11: note: type ‘struct vector’ defined in anonymous namespace can not match across the translation unit boundary
+     class vector : protected _Vector_base<_Tp, _Alloc>
+           ^

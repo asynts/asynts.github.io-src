@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "yet-another.py", line 6, in <module>
+    @nb.jit(nb.types.NPDatetime('D'), nopython=True)
+  File "/home/me/.local/lib/python3.6/site-packages/numba/decorators.py", line 173, in jit
+    return wrapper(pyfunc)
+  File "/home/me/.local/lib/python3.6/site-packages/numba/decorators.py", line 189, in wrapper
+    **dispatcher_args)
+  File "/home/me/.local/lib/python3.6/site-packages/numba/dispatcher.py", line 542, in __init__
+    _DispatcherBase.__init__(self, arg_count, py_func, pysig, can_fallback)
+  File "/home/me/.local/lib/python3.6/site-packages/numba/dispatcher.py", line 183, in __init__
+    default_values = self.py_func.__defaults__ or ()
+AttributeError: 'NPDatetime' object has no attribute '__defaults__'

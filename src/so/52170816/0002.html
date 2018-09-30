@@ -1,0 +1,42 @@
+<input id="input" list="suggestions" />
+<datalist id="suggestions">
+  <option>h1</option>
+  <option>h2</option>
+  <option>h3</option>
+  <option>h4</option>
+  <option>h5</option>
+  <option>h6</option>
+  <option>h7</option>
+</datalist>
+
+<script>
+  const elemInput = document.getElementById("input");
+  const elemSuggestions = document.getElementById("suggestions");
+
+  // keep a backup
+  const backup = elemSuggestions.cloneNode(true);
+
+  elemInput.onchange = function () {
+    // clear the list
+    while(elemSuggestions.children.length) {
+      elemSuggestions.removeChild(elemSuggestions.firstChild);
+    }
+
+    // normalize the input
+    let value = elemInput.value.toLowerCase();
+
+    // add items back to list
+    let count = 0;
+    for(const child of backup.children) {
+      if(child.value.startsWith(child)) {
+        elemSuggestions.appendChild(child.cloneNode());
+        count++;
+
+        // choose a maximum here
+        if(count >= 5) {
+          break;
+        }
+      }
+    }
+  };
+</script>

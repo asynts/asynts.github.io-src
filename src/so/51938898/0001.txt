@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "yet-another.py", line 4, in <module>
+    @nb.jit(nb.types.NPDatetime(1), nopython=True)
+  File "/home/me/.local/lib/python3.6/site-packages/numba/types/abstract.py", line 60, in __call__
+    inst = type.__call__(cls, *args, **kwargs)
+  File "/home/me/.local/lib/python3.6/site-packages/numba/types/scalars.py", line 110, in __init__
+    self.unit_code = npdatetime.DATETIME_UNITS[self.unit]
+KeyError: 1

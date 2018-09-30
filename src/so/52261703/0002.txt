@@ -1,0 +1,13 @@
+g++ (Ubuntu 7.3.0-16ubuntu3) 7.3.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+/tmp/tmp.k35Yi89RKg/main.cpp: In function ‘int main()’:
+/tmp/tmp.k35Yi89RKg/main.cpp:18:24: error: no matching function for call to ‘A<char, short int>::something<short int>(int)’
+   a.something<short>(10); // error
+                        ^
+/tmp/tmp.k35Yi89RKg/main.cpp:13:8: note: candidate: template<class A> void A<T, TS ...>::something(A, std::enable_if_t<is_same_v<A, T> >*) [with A = A; T = char; TS = {short int}]
+   void something(A, std::enable_if_t<std::is_same_v<A, T>>* = 0) { }
+        ^~~~~~~~~
+/tmp/tmp.k35Yi89RKg/main.cpp:13:8: note:   template argument deduction/substitution failed:

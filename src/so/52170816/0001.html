@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <input type="text" id="myInput" autofocus="true"  name="car" list="dl" />
+    <button id="btn" onclick="myfunction()">Search</button>
+    <datalist id="dl"></datalist>
+    <div id="outputArea" style="font-size: 30px"></div>
+
+    <script>
+      var acronyms = {
+        a1: "AAA",
+        a2: "BBB",
+        a3: "CCC",
+        a4: "DDD",
+        a5: "EEE",
+        a6: "FFF",
+        a7: "GGG",
+        a8: "HHH",
+        a9: "III",
+        a10: "JJJ",
+        a11: "KKK",
+        a12: "LLL",
+        a13: "MMM",
+        a14: "NNN",
+        a15: "OOO",
+        a16: "BBB",
+        a17: "QQQ",
+        a18: "RRR",
+      };
+
+      // Main Search Method //
+      var outputAreaRef = document.getElementById("outputArea");
+      function myfunction(){
+        var word = document.getElementById("myInput").value.toLowerCase().trim();
+        if (acronyms[word] !== undefined) {
+          word = acronyms[word];
+        }
+        outputAreaRef.innerHTML = word;
+      }
+
+      // Convert Object To Array To Be Used In Datalist //
+      var myacro = Object.keys(acronyms);
+      var list = document.getElementById('dl');
+      myacro.forEach(function(item){
+        var option = document.createElement('option');
+        option.value = item;
+        list.appendChild(option);
+      });
+    </script>
+  </body>
+</html>
