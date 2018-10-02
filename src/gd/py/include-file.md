@@ -33,4 +33,6 @@ FILE CONTENT HERE
 # ...
 ```
 
-This won't work in every senario, if your file is huge or containes binary data it might not be a good idea to embed it. *(note: your file shouldn't be huge!)*
+This won't work in every senario, if your file is huge or containes binary data it might not be a good idea to embed it.
+
+*Note: Your file shouldn't be huge, don't provide more than 3-5 lines!*
