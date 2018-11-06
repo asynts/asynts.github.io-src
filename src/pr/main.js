@@ -29,7 +29,6 @@ if(window.location.hash.length > 0) {
     .then(response => response.text())
     .then(text => {
       output.innerText = text;
-      console.log(PR);
       PR.prettyPrint();
     }).catch(err => err.innerText = err);
 } else {
