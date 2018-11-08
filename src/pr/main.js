@@ -29,6 +29,7 @@ if(window.location.hash.length > 0) {
     .then(response => response.text())
     .then(text => {
       output.innerText = text;
+      output.classList.remove("prettyprinted");
       PR.prettyPrint();
     }).catch(err => err.innerText = err);
 } else {

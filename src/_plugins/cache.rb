@@ -48,7 +48,11 @@ module Jekyll::Cache
 
       site.keep_files << fname
 
-      "/" + fname
+      if @uri.query
+        "/#{fname}?#{@uri.query}"
+      else
+        "/" + fname
+      end
     end
   end
 end
