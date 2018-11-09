@@ -48,11 +48,7 @@ function update() {
     url = url.replace("https://asynts.github.io/so/", "#");
   }
 
-  if(url.length == 0) {
-    url = "https://asynts.github.io/pr/";
-  } else {
-    url = "https://asynts.github.io/pr/#" + url;
-  }
+  url = window.location.protocol + "//" + window.location.host + "/pr/#" + url;
 
   urlout.innerText = url;
   urlout.href = url;
@@ -60,3 +56,4 @@ function update() {
 
 urlin.onkeyup = update;
 update();
+
