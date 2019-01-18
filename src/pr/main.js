@@ -9,7 +9,11 @@ if(window.location.hash.length > 0) {
   const lang = params.get("lang");
 
   if(url.startsWith("#")) {
-    url = `../so/${url.substr(1)}`;
+    if(url.startsWith("#X")) {
+      url = `../ref/${url.substr(2)}`;
+    } else {
+      url = `../so/${url.substr(1)}`;
+    }
   }
 
   if(lang !== null) {
