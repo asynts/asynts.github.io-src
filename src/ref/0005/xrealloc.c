@@ -1,3 +1,5 @@
+#include "xrealloc.h"
+
 // refer to: https://en.cppreference.com/w/c/memory/realloc
 void *base_realloc(const char *file, const char *function, int line, void *ptr,
                    size_t size) {
