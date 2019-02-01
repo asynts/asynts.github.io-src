@@ -10,9 +10,10 @@ void *base_realloc(const char *file, const char *function, int line, void *ptr,
 
   // If new_size is zero, the behavior is implementation defined.
   if (size == 0) {
-    printf("%s:%d(%s) realloc(): warning: reallocating with size = 0, use free "
-           "instead\n",
-           file, line, function);
+    printf(
+        "%s:%d(%s) xrealloc(): warning: reallocating with size = 0, use free "
+        "instead\n",
+        file, line, function);
 
     base_free(ptr);
     return NULL;
@@ -23,7 +24,7 @@ void *base_realloc(const char *file, const char *function, int line, void *ptr,
       void *newptr = realloc(ptr, size);
 
       if (newptr == NULL) {
-        printf("%s:%d(%s) realloc(): error: realloc(%p, %zu) returned NULL\n",
+        printf("%s:%d(%s) xrealloc(): error: realloc(%p, %zu) returned NULL\n",
                file, line, function, ptr, size);
 
         exit(EXIT_FAILURE);
@@ -41,7 +42,7 @@ void *base_realloc(const char *file, const char *function, int line, void *ptr,
 
   // It must be previously allocated by malloc(), calloc() or realloc() and not
   // yet freed with a call to free or realloc.
-  printf("%s:%d(%s) realloc(): warning: trying to reallocate unknown pointer "
+  printf("%s:%d(%s) xrealloc(): warning: trying to reallocate unknown pointer "
          "%p\n",
          file, line, function, ptr);
 
