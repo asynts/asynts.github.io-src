@@ -6,9 +6,10 @@
 <script src="{% cache https://raw.githubusercontent.com/google/code-prettify/master/loader/run_prettify.js?autorun=false %}"></script>
 <script src="{% cache https://raw.githubusercontent.com/google/code-prettify/master/loader/lang-lua.js %}"></script>
 
-<script src=main.js defer></script>
+<script src=main.js type=module></script>
 
 <style>
+  /* fix what code prettify breaks */
   pre {
     border: none !important;
   }

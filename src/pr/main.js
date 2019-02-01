@@ -1,56 +1,21 @@
-const output = document.getElementById("output");
-const welcome = document.getElementById("welcome");
-const error = document.getElementById("error");
+import load from "./load.js"
 
-const params = new URLSearchParams(window.location.search);
+let urlin, urlout;
 
-if(window.location.hash.length > 0) {
-  let url = window.location.hash.substr(1);
-  const lang = params.get("lang");
-
-  if(url.startsWith("#")) {
-    if(url.startsWith("#X")) {
-      url = `../ref/${url.substr(2)}`;
-    } else {
-      url = `../so/${url.substr(1)}`;
-    }
+function abbreviateUrl(url, full, abb) {
+  if(url.startsWith(full)) {
+    return url.replace(full, abb);
   }
 
-  if(lang !== null) {
-    output.classList.add(`lang-${lang}`);
-  }
-
-  const headers = new Headers();
-  headers.append("Accept", "text/plain");
-
-  const request = new Request(url, {
-    method: "GET",
-    cache: "no-cache",
-    headers
-  });
-
-  fetch(request)
-    .then(response => response.text())
-    .then(text => {
-      output.innerText = text;
-      output.classList.remove("prettyprinted");
-      PR.prettyPrint();
-    }).catch(err => err.innerText = err);
-} else {
-  welcome.hidden = false;
+  return url;
 }
-
-const urlin = document.getElementById("url-in");
-const urlout = document.getElementById("url-out");
 
 function update() {
   let url = urlin.value;
 
-  if(url.startsWith("https://raw.githubusercontent.com/asynts/stack-overflow/master/")) {
-    url = url.replace("https://raw.githubusercontent.com/asynts/stack-overflow/master/", "#");
-  } else if(url.startsWith("https://asynts.github.io/so/")) {
-    url = url.replace("https://asynts.github.io/so/", "#");
-  }
+  url = abbreviateUrl(url, "https://raw.githubusercontent.com/asynts/stack-overflow/master/", "#");
+  url = abbreviateUrl(url, `${window.location.protocol}//${window.location.host}/so/`, "#");
+  url = abbreviateUrl(url, `${window.location.protocol}//${window.location.host}/ref/`, "#X");
 
   url = window.location.protocol + "//" + window.location.host + "/pr/#" + url;
 
@@ -58,6 +23,21 @@ function update() {
   urlout.href = url;
 }
 
-urlin.onkeyup = update;
-update();
+document.body.onload = () => {
+  load();
+
+  // firefox won't reload if only the fragment changed
+  const frag = window.location.hash;
+  setInterval(() => {
+    if(frag != window.location.hash) {
+      window.location.reload();
+    }
+  }, 500);
+
+  urlin = document.getElementById("url-in");
+  urlout = document.getElementById("url-out");
+
+  urlin.onkeyup = update;
+  update();
+};
 
