@@ -1,25 +1,38 @@
+function decodeTarget() {
+  let hash = window.location.hash;
+
+  // '#' isn't allowed to appear in a uri fragment
+  if(hash.startsWith("##X")) {
+    window.location.hash = hash.substr(1);
+    window.location.reload();
+  }
+
+  if(hash.startsWith("#X")) {
+    return `../ref/${hash.substr(2)}`;
+  }
+
+  if(hash.startsWith("#!")) {
+    return `../so/${hash.substr(2)}`;
+  }
+
+  console.error(`unknown target: ${hash.substr(1)}`);
+  return hash.substr(1);
+}
+
 export default function() {
   const output = document.getElementById("output");
   const welcome = document.getElementById("welcome");
-  const error = document.getElementById("error");
 
   if(window.location.hash.length == 0) {
     welcome.hidden = false;
     return;
   }
 
-  const params = new URLSearchParams(window.location.search);
+  let url = new URL(decodeTarget(), window.location.href);
+  url.hash = "";
 
-  let url = window.location.hash.substr(1);
+  const lang = new URLSearchParams(window.location.search).get("lang");
 
-  // provide some abbreviations
-  if(url.startsWith("#X")) {
-    url = `../ref/${url.substr(2)}`;
-  } else if(url.startsWith("#")) {
-    url = `../so/${url.substr(1)}`;
-  }
-
-  const lang = params.get("lang");
   if(lang !== null) {
     output.classList.add(`lang-${lang}`);
   }
