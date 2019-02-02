@@ -22,7 +22,7 @@ export function decodeTarget() {
         return new URL(`/so/${hash.substr(2)}`, window.location.href);        
     }
 
-    throw `unknown target encoding '${hash}'`
+    return new URL(hash.substr(1));
 }
 
 export function getSource(url, callback) {
