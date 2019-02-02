@@ -39,7 +39,8 @@ document.body.onload = () => {
     const lang = new URLSearchParams(window.location.search).get("lang");
 
     getSource(decodeTarget(), source => {
-        outputElem.innerHTML = PR.prettyPrintOne(source, lang)
+        outputElem.innerText = source;
+        outputElem.innerHTML = PR.prettyPrintOne(outputElem.innerHTML, lang)
     });
 };
 
