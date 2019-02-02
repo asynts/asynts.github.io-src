@@ -1,26 +1,12 @@
 ---
 ---
 
-{% include head.html %}
-
-<script src="{% cache https://raw.githubusercontent.com/google/code-prettify/master/loader/run_prettify.js?autorun=false %}"></script>
-<script src="{% cache https://raw.githubusercontent.com/google/code-prettify/master/loader/lang-lua.js %}"></script>
+<script src="{% cache https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?autorun=false %}"></script>
+<script src="{% cache https://cdn.rawgit.com/google/code-prettify/master/loader/lang-lua.js %}"></script>
 
 <script src=main.js type=module></script>
 
-<style>
-  /* fix what code prettify breaks */
-  pre {
-    border: none !important;
-  }
-</style>
-
-<p id="error"></p>
-<pre id="output" class="prettyprint"></pre>
-
-<div id="welcome" hidden>
-  <p>Generate a link:</p>
-  <input id="url-in" /><br>
-  <a id="url-out" target="_blank"></a>
+<pre id=output></pre>
+<div id=welcome hidden>
+  <h1>Welcome!</h1>
 </div>
-
