@@ -4,11 +4,19 @@
 <script src="{% cache https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?autorun=false %}"></script>
 <script src="{% cache https://cdn.rawgit.com/google/code-prettify/master/loader/lang-lua.js %}"></script>
 
+<link rel=stylesheet href=style.css />
+
 <script src=main.js type=module></script>
+
+<div id=error hidden>
+  <h1>404</h1>
+  <h2>Not Found</h2>
+</div>
 
 <pre id=output></pre>
 <div id=welcome hidden>
   <p>Generate a link:</p>
-  <input id="urlin" /><br>
-  <a id="urlout" target="_blank"></a>
+  <input id=urlin /><br>
+  <a id=urlout target=_blank></a>
 </div>
+

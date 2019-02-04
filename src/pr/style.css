@@ -1,0 +1,23 @@
+#error {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: red;
+}
+
+#error[hidden] {
+  display: none;
+}
+
+#error h1 {
+  font-size: 100px;
+}
+
+#error h2 {
+  margin-left: 20px;
+  font-size: 50px;
+}
+
