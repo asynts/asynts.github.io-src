@@ -38,10 +38,18 @@ document.body.onload = () => {
     const outputElem = document.getElementById("output");
     const lang = new URLSearchParams(window.location.search).get("lang");
 
-    getSource(decodeTarget(), source => {
+    getSource(decodeTarget())
+      .then(source => {
         outputElem.innerText = source;
         outputElem.innerHTML = PR.prettyPrintOne(outputElem.innerHTML, lang)
-    });
+      }).catch(err => {
+        if(err == 404) {
+          document.getElementById("error").hidden = false;
+          return;
+        }
+
+        throw err;
+      });
 };
 
 // some browsers don't refresh if only the fragment changed
@@ -51,3 +59,4 @@ setInterval(() => {
         window.location.reload(true);
     }
 }, 500);
+

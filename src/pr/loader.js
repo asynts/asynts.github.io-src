@@ -25,7 +25,7 @@ export function decodeTarget() {
     return new URL(hash.substr(1));
 }
 
-export function getSource(url, callback) {
+export function getSource(url) {
     const headers = new Headers();
     headers.append("Accept", "text/plain");
 
@@ -35,7 +35,12 @@ export function getSource(url, callback) {
         headers
     });
 
-    fetch(request)
-        .then(response => response.text())
-        .then(callback);
+    return fetch(request).then(response => {
+      if(response.status == 404) {
+        throw 404;
+      }
+
+      return response.text();
+    });
 }
+
