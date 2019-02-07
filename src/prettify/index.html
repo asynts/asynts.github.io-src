@@ -6,19 +6,21 @@
 <noscript>Please enable JavaScript</noscript>
 
 <script>
-  let params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang");
   let url = params.get("url");
-  let lang = params.get("lang");
 
   if(url !== null) {
-    url = url.replace("https://raw.githubusercontent.com/asynts/stack-overflow/master/", "#");
+    if(url.startsWith("https://raw.githubusercontent.com/asynts/stack-overflow/master/")) {
+      url = url.replace("https://raw.githubusercontent.com/asynts/stack-overflow/master/", "!");
+    }
 
     if(lang !== null) {
-      window.location.replace(`../pr/?lang=${lang}#${url}`);
+      window.location.replace(`/pr/?lang=${lang}#${url}`, window.location.href);
     } else {
-      window.location.replace(`../pr/#${url}`);
+      window.location.replace(`/pr/#${url}`, window.location.href);
     }
   } else {
-    window.location.replace("../pr/");
+    window.location.replace("/pr/", window.location.href);
   }
 </script>

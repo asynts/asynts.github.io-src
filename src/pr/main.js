@@ -20,7 +20,7 @@ function updateWelcome() {
     const urlinElem = document.getElementById("urlin");
     const urloutElem = document.getElementById("urlout");
 
-    let url = new URL(window.location.href);
+    let url = new URL("/pr", window.location.href);
     url.hash = "#" + abbreviate(urlinElem.value.trim());
 
     urloutElem.innerText = url.href;
