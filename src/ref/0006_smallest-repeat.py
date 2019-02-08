@@ -1,7 +1,5 @@
 target = [8, 9, 8, 9, 8, 9, 8]
 
-print(target, "---")
-
 solution = []
 for j in range(1, len(target)):
   result = []
