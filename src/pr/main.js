@@ -36,12 +36,18 @@ document.body.onload = () => {
     }
 
     const outputElem = document.getElementById("output");
+    const downloadElem = document.getElementById("download");
     const lang = new URLSearchParams(window.location.search).get("lang");
 
-    getSource(decodeTarget())
+    const target = decodeTarget();
+
+    getSource(target)
       .then(source => {
         outputElem.innerText = source;
         outputElem.innerHTML = PR.prettyPrintOne(outputElem.innerHTML, lang)
+
+        downloadElem.href = target;
+        downloadElem.hidden = false;
       }).catch(err => {
         if(err == 404) {
           document.getElementById("error").hidden = false;
