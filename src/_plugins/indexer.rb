@@ -6,6 +6,16 @@ module Indexer
       @dir = Pathname.new(dir).relative_path_from(Pathname.new(site.dest)).to_s
       @name = "index.html"
 
+      items = items.map do |item|
+        fullname = Pathname.new(dir).join(item)
+
+        if fullname.directory?
+          item + "/"
+        else
+          item
+        end
+      end
+
       self.process(@name)
       self.read_yaml(File.join(base, "_layouts"), "index.html")
 
@@ -18,18 +28,14 @@ module Indexer
   def self._run(site, dir)
     files = Dir.entries(dir)
     files.sort!
-  
+
     if !files.to_set.intersect?(Set["index.html", "index.htm"])
       page = Page.new(site, site.source, dir, files)
 
       payload = site.site_payload
 
-      Jekyll::Hooks.trigger :site, :pre_render, site, payload
       page.output = Jekyll::Renderer.new(site, page, payload).run
-      Jekyll::Hooks.trigger :site, :post_render, site, payload
-
       page.write(site.dest)
-      Jekyll::Hooks.trigger :site, :post_write, site
 
       site.pages << page
     end
@@ -57,3 +63,4 @@ end
 Jekyll::Hooks.register :site, :post_write do |site|
   Indexer.run(site)
 end
+
