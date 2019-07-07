@@ -37,14 +37,18 @@ document.body.onload = () => {
 
     const outputElem = document.getElementById("output");
     const downloadElem = document.getElementById("download");
-    const lang = new URLSearchParams(window.location.search).get("lang");
+      
+    const params = new URLSearchParams(window.location.search);
 
     const target = decodeTarget();
 
     getSource(target)
       .then(source => {
         outputElem.innerText = source;
-        outputElem.innerHTML = PR.prettyPrintOne(outputElem.innerHTML, lang)
+
+        if(params.get("nolang") == null) {
+          outputElem.innerHTML = PR.prettyPrintOne(outputElem.innerHTML, params.get("lang"))
+        }
 
         downloadElem.href = target;
         downloadElem.hidden = false;
