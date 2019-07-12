@@ -1,0 +1,10 @@
+TAPE
+ab
+
+STATE
+default
+
+RULES
+default, a -> default, a, R
+default, b -> default, b, L
+
